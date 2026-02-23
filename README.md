@@ -25,30 +25,18 @@ Most applications send **every** query to the same expensive model, wasting mone
 
 Smart LLM Router analyzes each query's complexity in real-time and routes it to the optimal model:
 
-```
-User Query
-    │
-    ▼
-┌─────────────────────┐
-│  Complexity Classifier │
-│  (Heuristic / LLM /  │
-│   Hybrid)             │
-└──────────┬────────────┘
-           │
-     ┌─────┴─────┐
-     ▼           ▼
-┌─────────┐ ┌─────────┐
-│System 1 │ │System 2 │
-│  Fast   │ │  Deep   │
-│ (lite)  │ │ (flash) │
-└─────────┘ └─────────┘
-     │           │
-     └─────┬─────┘
-           ▼
-    ┌────────────┐
-    │  Response   │
-    │ + Metrics   │
-    └────────────┘
+```mermaid
+flowchart TD
+    A["User Query"] --> B["Complexity Classifier\n(Heuristic / LLM / Hybrid)"]
+    B -->|Simple| C["🟢 System 1\nFast · Cheap\ngemini-2.5-flash-lite"]
+    B -->|Complex| D["🟣 System 2\nDeep · Powerful\ngemini-2.5-flash"]
+    C --> E["Response + Metrics"]
+    D --> E
+
+    style C fill:#065f46,stroke:#10b981,color:#fff
+    style D fill:#4c1d95,stroke:#8b5cf6,color:#fff
+    style B fill:#1e293b,stroke:#475569,color:#e2e8f0
+    style E fill:#1e293b,stroke:#475569,color:#e2e8f0
 ```
 
 **System 1** (Fast Thinking): Greetings, translations, factual lookups → `gemini-2.5-flash-lite`
