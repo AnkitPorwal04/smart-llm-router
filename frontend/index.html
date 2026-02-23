@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Intelligent query routing that analyzes complexity and sends requests to the optimal LLM - fast models for simple tasks, powerful models for complex reasoning." />
+    <meta name="theme-color" content="#0f172a" />
+    <meta property="og:title" content="Smart LLM Router" />
+    <meta property="og:description" content="System 1 / System 2 thinking for LLMs - route queries to the right model automatically." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Smart LLM Router</title>
+  </head>
+  <body class="h-full bg-[#0f172a] text-gray-100">
+    <!-- Splash screen (outside #root so React doesn't instantly replace it) -->
+    <div id="splash" style="position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#0f172a;transition:opacity .5s ease;">
+      <style>
+        @keyframes splash-pulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+        #splash-icon{animation:splash-pulse 1.5s ease-in-out infinite}
+        #splash.fade-out{opacity:0;pointer-events:none}
+      </style>
+      <div id="splash-icon" style="width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#10b981,#8b5cf6);display:flex;align-items:center;justify-content:center;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="10" x="3" y="8" rx="3"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/><path d="M8 4v4"/><path d="M16 4v4"/><path d="M9 20h6"/></svg>
+      </div>
+      <span style="color:#94a3b8;font-size:14px;font-family:system-ui,sans-serif;">Loading Smart LLM Router...</span>
+    </div>
+    <div id="root" class="h-full"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
