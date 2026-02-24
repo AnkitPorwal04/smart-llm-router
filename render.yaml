@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: smart-llm-router
+    runtime: python
+    buildCommand: ./build.sh
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: API_KEY
+        sync: false  # you'll set this manually in the Render dashboard
+      - key: API_BASE_URL
+        value: https://generativelanguage.googleapis.com/v1beta/openai/
+      - key: SYSTEM1_MODEL
+        value: gemini-2.5-flash-lite
+      - key: SYSTEM2_MODEL
+        value: gemini-2.5-flash
+      - key: CLASSIFIER_MODE
+        value: heuristic
+      - key: PYTHON_VERSION
+        value: "3.11.11"
+      - key: NODE_VERSION
+        value: "20.18.1"
